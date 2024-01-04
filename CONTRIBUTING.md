@@ -1,2 +1,3 @@
+#
 ## Contributing
 ### Reporting bugs

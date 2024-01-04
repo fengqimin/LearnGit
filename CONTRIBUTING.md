@@ -1,4 +1,0 @@
-#
-## Contributing
-### Reporting bugs
-### pull

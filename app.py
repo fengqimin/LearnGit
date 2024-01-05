@@ -1,12 +1,36 @@
-from flask import Flask
+from flask import Flask, render_template, request, url_for, redirect
 import os
 
 app = Flask(__name__)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 
-@app.route("/")
-def hello_world():
-    return "Hello, git!"
+@app.route("/")  # this decorator create the home route
+def home():
+    techs = ["HTML", "CSS", "Flask", "Python"]
+    name = "30 Days Of Python Programming"
+    return render_template("home.html", techs=techs, name=name, title="Home")
+
+
+@app.route("/about")
+def about():
+    name = "30 Days Of Python Programming"
+    return render_template("about.html", name=name, title="About Us")
+
+
+@app.route("/result")
+def result():
+    return render_template("result.html")
+
+
+@app.route("/post", methods=["GET", "POST"])
+def post():
+    name = "Text Analyzer"
+    if request.method == "GET":
+        return render_template("post.html", name=name, title=name)
+    if request.method == "POST":
+        content = request.form["content"]
+        return redirect(url_for("result"))
 
 
 def start_flask():
